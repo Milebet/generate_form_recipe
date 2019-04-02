@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= render partial: 'layouts/head' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body class="hold-transition skin-blue-light sidebar-mini">
+    <div class="wrapper">
+      <%= render partial: 'layouts/header' %>
+      <%= render partial: 'layouts/navigation' %>
+      <%= render partial: 'layouts/main_slider' %>
+      <!-- Devise alert messages-->
+      <% if notice.present? %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+       <% if alert.present? %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
+      <div class="container container-body">
+        <div class="container-custom">
+          <%= yield %>
+        </div>
+      </div>
+      <%= render partial: 'layouts/footer' %>
+    </div>
+  </body>
+</html>

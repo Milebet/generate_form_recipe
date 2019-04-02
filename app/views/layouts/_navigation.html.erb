@@ -1,0 +1,41 @@
+<!-- navigation -->	
+<div class="navigation-agileits">
+	<div class="container container-nav">
+		<nav class="navbar navbar-default navbar-custom">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header nav_2">
+				<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div> 
+			<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+				<ul class="nav navbar-nav custom-ul-li">
+					<li><a href="#" class="act">Inicio</a></li>	
+					<!-- Mega Menu -->
+					<li>
+						<a href="#" class="" data-toggle="dropdown">MedLine<b class="caret"></b></a>
+						<ul class="dropdown-menu multi-column-dropdown">
+							<li><a href="#">Sobre Nosotros</a></li>
+							<li><a href="#">Servicios</a></li>
+							<li><a href="#">Equipo</a></li>
+							<li><a href="#">Asociados</a></li>
+						</ul>
+					</li>
+					<% if signed_in? %>
+					<li>
+						<a href="#" data-toggle="dropdown">Recetas<b class="caret"></b></a>
+						<ul class="dropdown-menu multi-column-dropdown">
+							<li><%= link_to "Generar", generate_recipe_url(current_doctor)%></li>
+							<li><a href="#"> Mis Recetas </a></li>
+						</ul>
+					</li>
+					<% end %>
+					<li><a href="#"> IPE Grupo Comercial </a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+</div>

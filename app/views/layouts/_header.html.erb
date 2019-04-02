@@ -1,0 +1,57 @@
+<header class="main-header">
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="custom-margin navbar navbar-static-top">
+      <div class="row">
+        <div class="container-col container-4">
+          <!-- Sidebar toggle button-->
+          <%= link_to image_tag("icons/medline_nabvar.png", :class => "responsive_img custom_a"), home_index_path %>
+        </div>
+        <div class="container-col container-8">
+         <% if signed_in? %>
+            <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav navbar-nav-custom">
+                <!-- User Account: style can be found in dropdown.less -->
+                <li class="dropdown user user-menu">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="hidden-xs">My Account</span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <!-- User image -->
+                    <li class="user-header">
+                      <%= image_tag current_doctor.photo.url %>
+                      <p>
+                       <%= "#{current_doctor.first_name} #{current_doctor.last_name}" %>
+                        <small>Member since <%= current_doctor.created_at%></small>
+                      </p>
+                    </li>
+                    <!-- Menu Footer-->
+                    <li class="user-footer">
+                      <div class="pull-left">
+                        <%= link_to "Perfil", profile_doctor_path(current_doctor), :class => "btn btn-default btn-flat" %>
+                      </div>
+                      <div class="pull-right">
+                        <%= link_to "Salir", destroy_doctor_session_path, method: :delete, :class => "btn btn-default btn-flat" %>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+        <% else %>
+          <div class="navbar-custom-menu">
+              <ul class="nav navbar-nav navbar-nav-custom">
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="">
+                    <%= link_to "Registrarse", new_doctor_registration_path %>
+                </li>
+                <!-- Tasks: style can be found in dropdown.less -->
+                <li class="">
+                    <%= link_to "Ingresar", new_doctor_session_path %>
+                </li>
+              </ul>
+            </div>
+        <% end %>
+        </div>
+      </div>
+    </nav>
+</header>

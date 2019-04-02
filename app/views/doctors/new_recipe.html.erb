@@ -1,0 +1,65 @@
+<div class="col-md-offset-2 col-md-8">
+<%= simple_form_for @doctor, :url => create_recipe_path, :method => :post  do |f| %>
+  <%= f.simple_fields_for :recipes do |r| %>
+    <h3>Datos del Paciente</h3>
+    <div class="col-md-3">
+       Tipo de documento:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :document_type,
+                label: false,
+                required: true%>
+    </div>
+    <div class="col-md-3">
+       Número de Documento:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :document,
+                label: false,
+                required: true%>
+    </div>
+    <div class="col-md-3">
+       Nombre Completo:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :full_name,
+                label: false,
+                required: true%>
+    </div>
+    <div class="col-md-3">
+       Teléfono Celular:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :cell_phone,
+                label: false,
+                required: false%>
+    </div>
+    <div class="col-md-3">
+       Teléfono Local:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :local_phone,
+                label: false,
+                required: false%>
+    </div>
+    <div class="col-md-3">
+       Correo Electrónico:
+    </div>
+    <div class="col-md-9">
+    <%= r.input :email,
+                label: false,
+                required: true%>
+    </div>
+    <h3>Detalle de recetas</h3>
+    <%= r.simple_fields_for :recipe_details do |rd| %>
+    <div class="nested-fields well well-compact">
+	    <%= render 'recipe_detail_fields', f: rd %>
+	    <%= link_to_add_association 'add_medicine', r, :recipe_details %>
+    </div>
+    <% end %>
+  <% end %>
+  <div class="form-actions">
+        <%= f.button :submit, "Generar" %>
+    </div>
+<% end %>
+</div>
