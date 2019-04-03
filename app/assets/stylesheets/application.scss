@@ -4,6 +4,29 @@
  *= require_self
 */
 
+ /** index recipes ***/
+
+.thead-dark {
+  th {
+    color: #FFF;
+    background-color: #52C0F6;
+    border-color: #52C0F6;
+  }
+}
+
+td 
+{
+    height: 50px; 
+    width: 50px;
+}
+
+#cssTable td, th
+{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+ /*****/
 .recipe {
   background: url("recipes/fondo.png");
   background-position: top;
