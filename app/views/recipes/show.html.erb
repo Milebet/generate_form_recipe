@@ -1,2 +1,57 @@
-<h1>Recipes#show</h1>
-<p>Find me in app/views/recipes/show.html.erb</p>
+<div class="snipcart-details top_brand_home_details">	
+    <div class="container-fluid">
+	    <div class="row">
+		    <div class="col-md-12 col-sm-12 col-xs-6">
+		      	<div class="recipe col-md-6 col-sm-6 col-xs-10">
+		      		<h3>Datos del paciente</h3>
+		           	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		          		<label>Tipo de documento: </label>
+			        	<%= @recipe.document_type %>
+                	</div>
+                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		            	<label>Número de documento: </label>
+		            	<%= @recipe.document %>
+		        	</div>
+		        	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		          		<label>Nombre Completo: </label>
+			        	<%= @recipe.full_name %>
+                	</div>
+                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		          		<label>Correo Electrónico: </label>
+			        	<%= @recipe.email %>
+                	</div>
+                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		          		<label>Teléono Celular: </label>
+			        	<%= @recipe.cell_phone %>
+                	</div>
+                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
+		          		<label>Teléfono Local: </label>
+			        	<%= @recipe.local_phone %>
+                	</div>
+				</div>
+				<div class="recipe col-md-6 col-sm-6 col-xs-10">
+					<h3>Medicamentos Recetados</h3>
+					<% @recipe.recipe_details.each do |detail|%>
+						<div class="form-group col-md-12 col-sm-10 col-xs-10">
+							<label>Nombre Medicamento:</label>
+							<%= detail.medicine_name %>
+						</div>
+						<div class="form-group col-md-12 col-sm-10 col-xs-10">
+							<label>Cantidad:</label>
+							<%= detail.quantity %>
+						</div>
+						<div class="form-group col-md-12 col-sm-10 col-xs-10">
+							<label>Indicaciones:</label>
+							<%= detail.indications %>
+						</div>
+					<% end %>
+				</div>
+		    </div>
+	    </div>
+	    <div >
+            <div class="form-group">
+            	<%= link_to "Volver", root_path, class: "btn btn-danger btn-flat" %>
+             </div>
+		</div>
+	</div>
+</div>

@@ -1,18 +1,20 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
+
   def new
   	@recipe = Recipe.new
   	@recipe_details = @recipe.recipe_details.build
   end
 
   def create
-  	@recipe = Recipe.new(strong_params)
+  	@recipe = Recipe.new(recipe_params)
+    @recipe.doctor = current_doctor
   	respond_to do |format|
-      if @recipe.save(strong_params)
-        format.html { redirect_to(recipes_show_url, :notice => 'Recipe was successfully generated.') }
+      if @recipe.save(recipe_params)
+        format.html { redirect_to(recipe_url, :notice => 'Recipe was successfully generated.') }
         format.xml  { head :ok }
       else
-        format.html { render :action => "new_recipe" }
+        format.html { render :action => "new" }
         format.xml  { render :xml => @recipe.errors, :status => :unprocessable_entity }
       end
     end
@@ -22,8 +24,12 @@ class RecipesController < ApplicationController
   end
 
   private
+   def recipe_params
+     params.require(:recipe).permit(:id, :full_name, :email, :cell_phone, :local_phone, :document_type, :document, :doctor_id, 
+      recipe_details_attributes: [:id, :medicine_name, :quantity, :indications, :_destroy])
+   end
 
    def set_recipe
-   	@recipe = Recipe.find(param[:id])
+   	@recipe = Recipe.find(params[:id])
    end
 end

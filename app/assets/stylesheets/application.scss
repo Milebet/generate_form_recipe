@@ -4,6 +4,12 @@
  *= require_self
 */
 
+.recipe {
+  background: url("recipes/fondo.png");
+  background-position: top;
+  background-repeat: no-repeat;
+}
+
 /*imputs*/
 .imput-custom {
     width: 30%;

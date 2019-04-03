@@ -1,0 +1,12 @@
+<div class="nested-fields well well-compact">
+	<div class="form">
+		<%= f.input :medicine_name,
+		required: true%>
+		<%= f.input :quantity,
+			required: true%>
+		<%= f.input :indications,
+			required: true%>
+		<%= link_to_remove_association "remove medicine", f, data: {:confirm => 'do you really want to do this?'}, 
+			html: {class: 'btn btn-default btn-xs glyphicon glyphicon-remove'} %>	
+	</div>
+</div>
