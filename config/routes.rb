@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :recipes
   get 'home/index'
   match "profile_doctor/:id" => "doctors#show", via: [:get], as: "profile_doctor"
-  #match "doctors/:id/generate_recipe" => "doctors#new_recipe", via: [:get], as: "generate_recipe"
+  match "doctors/:id/my_recipes" => "doctors#my_recipes", via: [:get], as: "my_recipes"
   #match "doctors/:id/create_recipe" => "doctors#create_recipe", via: [:post], as: "create_recipe"
   devise_for :doctors, path:'doctors', :controllers => {
     sessions: 'doctors/sessions',

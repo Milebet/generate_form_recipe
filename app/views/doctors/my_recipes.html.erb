@@ -1,0 +1,20 @@
+<table class="table cssTable">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Paciente</th>
+      <th scope="col">Medicamentos recetados</th>
+      <th scope="col">Fecha de Generación</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @recipes.each do |recipe| %>
+      <tr>
+        <td><%= recipe.full_name %></td>
+        <td><%= recipe.recipe_details.pluck(:medicine_name).join(",") %></td>
+        <td><%= recipe.created_at.strftime("%d-%m-%Y %T") %></td>
+        <td><%= link_to "Ver", recipe_url(recipe) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

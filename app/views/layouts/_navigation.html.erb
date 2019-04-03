@@ -28,8 +28,8 @@
 					<li>
 						<a href="#" data-toggle="dropdown">Recetas<b class="caret"></b></a>
 						<ul class="dropdown-menu multi-column-dropdown">
-							<li><%= link_to "Generar", generate_recipe_url(current_doctor)%></li>
-							<li><a href="#"> Mis Recetas </a></li>
+							<li><%= link_to "Generar", new_recipe_path %></li>
+							<li><%= link_to "Mis Recetas", my_recipes_url(current_doctor) %></li>
 						</ul>
 					</li>
 					<% end %>
