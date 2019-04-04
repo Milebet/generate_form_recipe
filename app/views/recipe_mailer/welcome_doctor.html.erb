@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Notificación de Cuenta creada en Medline</h1>
+    <p>Estimado(a):, <%= @resource.full_name %>.</p>
+    <p>Nos es grato notificar que se ha registrado con éxito en el sistema, sus datos de inicio de sesión son:</p>
+    <p>Email: <%= @resource.email %></p>
+    <p>Password: <%= @generated_password %></p>
+    <p>Para iniciar sesión haga click en el siguiente enlace: <%= link_to "Iniciar sesión", doctor_session_url %></p>
+    <p>Agradecemos su registro, que tenga un buen día.</p>
+    <br>
+    <p>Gracias y que tenga un buen día!</p>
+  </body>
+</html>
+

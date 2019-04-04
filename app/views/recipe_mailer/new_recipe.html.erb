@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Notificación de Nueva Receta Génerada</h1>
+    <p>En la ciudad de:, <%= @doctor.city %>.</p><br>
+    <p>Quien receta:</p>
+    <p>Doctor(a): <%= @doctor.full_name %></p>
+    <p>Número de documento: <%= @doctor.document %></p><br>
+    <p>Datos del paciente</p>
+    <p>Nombre: <%= @recipe.full_name %></p>
+    <p>Teléfono célular: <%= @recipe.cell_phone %></p>
+    <p>Teléfono local: <%= @recipe.local_phone %></p>
+    <p>Dirección: <%= @recipe.full_name %></p>
+    <p>Correo Electrónico: <%= @recipe.email %></p>
+    <br>
+    <div class="recipe col-md-6 col-sm-6 col-xs-10">
+      <h3>Medicamentos Recetados</h3>
+      <% @medicines.each do |detail|%>
+        <div class="form-group col-md-12 col-sm-10 col-xs-10">
+          <label>Nombre Medicamento:</label>
+          <%= detail.medicine_name %>
+        </div>
+        <div class="form-group col-md-12 col-sm-10 col-xs-10">
+          <label>Cantidad:</label>
+          <%= detail.quantity %>
+        </div>
+        <div class="form-group col-md-12 col-sm-10 col-xs-10">
+          <label>Indicaciones:</label>
+          <%= detail.indications %>
+        </div>
+      <% end %>
+    </div>
+    <p>Gracias y que tenga un buen día!</p>
+  </body>
+</html>
+
