@@ -2,7 +2,7 @@
 
 class Doctors::RegistrationsController < Devise::RegistrationsController
    before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
    def new
@@ -12,7 +12,6 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
     @generated_password = Devise.friendly_token.first(6)
-
     @resource = Doctor.create(configure_sign_up_params)
     @resource.password = @generated_password
     #@resource.user.activate
@@ -33,9 +32,9 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+   def update
+     super
+   end
 
   # DELETE /resource
   # def destroy
@@ -58,7 +57,7 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
      params.require(:doctor).permit(:email, :password, :password_confirmation, :document_type, 
       :document, :first_name, :second_name, :last_name, :second_last_name, :married_name, 
       :birth_date, :genre, :speciality, :years_experience, :country, :city, :address, 
-      :local_phone, :cell_phone)
+      :local_phone, :cell_phone, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at)
      #devise_parameter_sanitizer.permit(:sign_up, keys: [:attribute, :speciality, :document_type,
      # :document, :first_name, :second_name, :last_name, :second_last_name, :married_name,
      # :birth_date, :genre, :photo, :cell_phone, :local_phone, :country, :city, :address,
@@ -66,9 +65,12 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
    end
 
   # If you have extra params to permit, append them to the sanitizer.
-  # def configure_account_update_params
-  #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
-  # end
+   def configure_account_update_params
+     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :document_type, 
+      :document, :first_name, :second_name, :last_name, :second_last_name, :married_name, 
+      :birth_date, :genre, :speciality, :years_experience, :country, :city, :address, 
+      :local_phone, :cell_phone, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at])
+   end
 
   # The path used after sign up.
   # def after_sign_up_path_for(resource)
