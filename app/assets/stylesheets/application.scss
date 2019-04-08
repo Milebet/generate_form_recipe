@@ -3,7 +3,45 @@
  *= require style
  *= require_self
 */
+$border-radius-base:  20px !default;
 
+/** home index medline **/
+.flash_notice {
+    background-color: rgba(50, 115, 220, 0.3);
+    font-weight: bold;
+    color: #4c4c9f !important;
+    height: 30px;
+}
+
+.flash_error {
+    background-color: hsla(14, 100%, 53%, 0.6);
+    font-weight: bold;
+    color: #4a0303 !important;
+    height: 30px;
+}
+
+.margin_text {
+    margin-left: 2em;
+    font-size: 1.1em;
+}
+
+.tab-home{
+    margin: 30px 0px;
+    overflow: hidden;
+    width: 100%;
+    height: auto;
+    text-align: center;
+
+    img {
+      border-radius: $border-radius-base;
+      max-width: 300px;
+      height: auto;
+    }
+}
+
+.section-gray {
+  background: #E5E5E5;
+}
  /** index recipes ***/
 
 .thead-dark {

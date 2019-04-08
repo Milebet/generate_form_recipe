@@ -1,0 +1,8 @@
+<% notice_style = notice.nil? ? 'style=display:none' : "" %>
+<div class="flashes">
+	<div class="flash flash_notice" <%= notice_style %>><p class="margin_text"><%= notice %></p></div>
+</div>
+<% alert_style = alert.nil? ? 'style=display:none' : "" %>
+<div class="flashes">
+	<div class="flash flash_error" <%= alert_style %>><p class="margin_text"><%= alert %></p></div>
+</div>

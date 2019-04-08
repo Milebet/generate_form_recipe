@@ -21,6 +21,8 @@
 //= require_tree .
 
 $(document).ready(function(){
+	noticeTimeout();
+  	errorTimeout();
 	// carrousel slider
 	jQuery('#demo1').skdslider(
 		{'delay':3000, 
@@ -35,3 +37,16 @@ $(document).ready(function(){
 	});
 
 });
+
+
+function noticeTimeout(){
+  setTimeout(function(){
+     $(".flash_notice").slideUp("slow")
+  }, 2000);
+}
+
+function errorTimeout() {
+  setTimeout(function(){
+     $(".flash_error").slideUp("slow")
+  }, 2000);
+}

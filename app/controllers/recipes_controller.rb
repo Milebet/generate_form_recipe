@@ -1,9 +1,11 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show]
+  after_action :verify_authorized
 
   def new
   	@recipe = Recipe.new
   	@recipe_details = @recipe.recipe_details.build
+    authorize @recipe
   end
 
   def create
@@ -11,7 +13,8 @@ class RecipesController < ApplicationController
     @recipe.doctor = current_doctor
   	respond_to do |format|
       if @recipe.save(recipe_params)
-        format.html { redirect_to(recipe_url, :notice => 'Recipe was successfully generated.') }
+        RecipeMailer.new_recipe(@recipe).deliver_now
+        format.html { redirect_to(recipe_url(@recipe), :notice => 'Recipe was successfully generated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "new" }
@@ -31,5 +34,6 @@ class RecipesController < ApplicationController
 
    def set_recipe
    	@recipe = Recipe.find(params[:id])
+    authorize @recipe
    end
 end

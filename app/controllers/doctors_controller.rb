@@ -1,8 +1,14 @@
 class DoctorsController < ApplicationController
+	include Pundit
   before_action :set_doctor, only: [:show, :new_recipe, :create_recipe, :my_recipes]
   #https://www.kollegorna.se/en/2015/04/build-an-api-now/
   def my_recipes
     @recipes = @doctor.recipes
+    authorize @recipes
+  end
+
+  def show
+  	authorize @doctor
   end
 
   private

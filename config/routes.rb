@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  get 'info/medline'
+  get 'info/services'
+  get 'info/ipe'
+  get 'info/team'
   resources :recipes
   get 'home/index'
+  get 'home/info'
   match "profile_doctor/:id" => "doctors#show", via: [:get], as: "profile_doctor"
   match "doctors/:id/my_recipes" => "doctors#my_recipes", via: [:get], as: "my_recipes"
   #match "doctors/:id/create_recipe" => "doctors#create_recipe", via: [:post], as: "create_recipe"

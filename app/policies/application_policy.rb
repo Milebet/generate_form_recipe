@@ -1,8 +1,8 @@
 class ApplicationPolicy
-  attr_reader :user, :record
+  attr_reader :doctor, :record
 
-  def initialize(user, record)
-    @user = user
+  def initialize(doctor, record)
+    @doctor = doctor
     @record = record
   end
 
@@ -35,10 +35,10 @@ class ApplicationPolicy
   end
 
   class Scope
-    attr_reader :user, :scope
+    attr_reader :doctor, :scope
 
-    def initialize(user, scope)
-      @user = user
+    def initialize(doctor, scope)
+      @doctor = doctor
       @scope = scope
     end
 
