@@ -20,12 +20,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :sessions, only: [:create]
-      resources :doctors, only: [:create, :show, :index] do
-        resources :recipes, only: [:index, :show]
-      end
+      resources :doctors, only: [:update, :show]
+      resources :recipes, only: [:index, :show]
     end
   end
+  match "api/v1/update_doctor/:id" => "api/v1/doctors#update", via: [:put], as: "update_doctor_api"
+  match "api/v1/validate_doctor/:email" => "api/v1/doctors#validate_doctor", via: [:get], constraints: { email: /[^\/]+/} , as: "validate_doctor"
 
   root to: "home#index"
 end

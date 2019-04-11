@@ -1,17 +1,24 @@
 class Api::V1::DoctorsController < Api::V1::BaseController
+  include Pundit
 	before_action :load_resource
   before_action :authenticate_doctor
+
+  def validate_doctor
+    @doctor = Doctor.find_by(email: params[:email])
+    if @doctor
+      render json: Api::V1::DoctorSerializer.new(@doctor)
+    else
+      render json: {doctor: "not found"}.as_json
+    end
+  end
 
   def show
     render plain: (Api::V1::DoctorSerializer.new(@doctor)).to_json
   end
 
   def update
-    auth_doctor = authorize_with_permissions(@doctor, :update?)
-
     if @doctor.update(update_params)
-      render jsonapi: auth_doctor.record, serializer: Api::V1::DoctorSerializer,
-        fields: {doctor: auth_doctor.fields}
+      render plain: (Api::V1::DoctorSerializer.new(@doctor)).to_json
     else
       invalid_resource!(@doctor.errors)
     end
@@ -26,8 +33,11 @@ class Api::V1::DoctorsController < Api::V1::BaseController
     end
 
     def create_params
-      normalized_params.permit(
-        :email, :password, :password_confirmation, :name
+      params.permit(
+      :email, :password, :password_confirmation, :document_type, 
+      :document, :first_name, :second_name, :last_name, :second_last_name, :married_name, 
+      :birth_date, :genre, :speciality, :years_experience, :country, :city, :address, 
+      :local_phone, :cell_phone, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at
       )
     end
 
