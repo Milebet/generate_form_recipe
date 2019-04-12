@@ -3,7 +3,7 @@ class Api::V1::BaseController < ActionController::API
   include ActiveHashRelation
   include CustomErrors
 
-  before_action :authenticate_doctor!
+  #before_action :authenticate_doctor!
 	rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
 
   def record_not_found
@@ -29,12 +29,15 @@ class Api::V1::BaseController < ActionController::API
 
     def valid_authenticated? request
       options = {}
-      return nil if !request[:email].present? && !request[:id].present?
+      return nil if !request[:email].present? && !request[:id].present? && !params[:doctor_id].present?
       if params[:action] == "validate_doctor"
         options[:authentication] = {email: request[:email]}
         if request.request_parameters.keys.include?("password")
           options[:authentication][:password] = request.request_parameters['password']
         end
+      elsif params[:controller].match(/recipe/).present?
+        options[:authentication] = {id: params[:doctor_id]}
+        options[:authentication][:token] = request.authorization
       else
         return nil if !request.authorization.present?
         options[:authentication] = {id: request[:id]}
@@ -69,6 +72,25 @@ class Api::V1::BaseController < ActionController::API
 
     def authenticate_doctor!
       authenticate_doctor or raise UnauthenticatedError
+    end
+
+    def authenticate_recipe
+      request_params = valid_authenticated?(request)
+      return nil if !request_params.present?
+      doctor = Doctor.find(request_params[:authentication][:id])
+      return false if !doctor.present? || !request_params[:authentication][:token].present?
+      return false if !ActiveSupport::SecurityUtils.secure_compare(doctor.token, request_params[:authentication][:token])
+      if !["create", "recipes_doctor"].include? params[:action].to_s.downcase
+        recipe = Recipe.find(params[:id]) rescue nil
+        return false if recipe.nil?
+        recipe.doctor_id == doctor.id ? true : false
+      else
+        true
+      end
+    end
+
+    def authenticate_recipe!
+      authenticate_recipe or raise UnauthenticatedError
     end
 
     def unauthorized!

@@ -1,5 +1,5 @@
 class Api::V1::DoctorsController < Api::V1::BaseController
-  include Pundit
+  #include Pundit
 	before_action :load_resource
   before_action :authenticate_doctor
 
@@ -8,17 +8,17 @@ class Api::V1::DoctorsController < Api::V1::BaseController
     if @doctor
       render json: Api::V1::DoctorSerializer.new(@doctor)
     else
-      render json: {doctor: "not found"}.as_json
+      render json: {doctor: "not found"}
     end
   end
 
   def show
-    render plain: (Api::V1::DoctorSerializer.new(@doctor)).to_json
+    render json: (Api::V1::DoctorSerializer.new(@doctor))
   end
 
   def update
     if @doctor.update(update_params)
-      render plain: (Api::V1::DoctorSerializer.new(@doctor)).to_json
+      render json: (Api::V1::DoctorSerializer.new(@doctor))
     else
       invalid_resource!(@doctor.errors)
     end
