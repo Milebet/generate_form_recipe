@@ -53,4 +53,12 @@ class Doctor < ApplicationRecord
   	full_name << self.married_name
   	full_name.join(" ")
   end
+
+  def search(term, page)
+    if term
+      self.recipes.where('full_name LIKE ?', "%#{term}%").paginate(page: page, per_page: 5).order('id DESC')
+    else
+      self.recipes.paginate(page: page, per_page: 5).order('id DESC') 
+    end
+  end
 end

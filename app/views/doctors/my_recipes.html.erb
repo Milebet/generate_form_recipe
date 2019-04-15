@@ -1,4 +1,20 @@
-<table class="table cssTable">
+<br>
+<div class="w3ls_logo_products_left1">
+</div>
+<div class="w3ls_logo_products_left">
+  <h1><a>Mis recetas generadas</a></h1>
+</div>
+<div class="clearfix"> </div>
+<div class="box box-primary"></div>
+<div class="col-md-offset-9 col-md-3">
+  <%= form_tag(my_recipes_path(current_doctor), method: :get, html: {class: "form-inline active-cyan-3 active-cyan-4" }) do %>
+   <%= text_field_tag :term, params[:term], class: "form-control-sm ml-3 w-75 ", placeholder: "Buscar por paciente..." %>
+   <%= submit_tag 'Search', name: nil, class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<div class="clearfix"><br></div>
+<table class="table table-bordered table-hover">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Paciente</th>
@@ -13,8 +29,15 @@
         <td><%= recipe.full_name %></td>
         <td><%= recipe.recipe_details.pluck(:medicine_name).join(",") %></td>
         <td><%= recipe.created_at.strftime("%d-%m-%Y %T") %></td>
-        <td><%= link_to "Ver", recipe_url(recipe) %></td>
+        <td><%= link_to ('<i class="fa fa-search"></i>').html_safe, recipe_url(recipe) %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+
+<div class="apple_pagination">
+  <div class="page_info">
+    <%= page_entries_info @recipes %>
+  </div>
+  <%= will_paginate @recipes, :container => false %>
+</div>

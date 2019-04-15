@@ -1,57 +1,93 @@
-<div class="snipcart-details top_brand_home_details">	
-    <div class="container-fluid">
-	    <div class="row">
-		    <div class="col-md-12 col-sm-12 col-xs-6">
-		      	<div class="recipe col-md-6 col-sm-6 col-xs-10">
-		      		<h3>Datos del paciente</h3>
-		           	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		          		<label>Tipo de documento: </label>
-			        	<%= @recipe.document_type %>
-                	</div>
-                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		            	<label>Número de documento: </label>
-		            	<%= @recipe.document %>
-		        	</div>
-		        	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		          		<label>Nombre Completo: </label>
-			        	<%= @recipe.full_name %>
-                	</div>
-                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		          		<label>Correo Electrónico: </label>
-			        	<%= @recipe.email %>
-                	</div>
-                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		          		<label>Teléono Celular: </label>
-			        	<%= @recipe.cell_phone %>
-                	</div>
-                	<div class="form-group col-md-12 col-sm-10 col-xs-10">
-		          		<label>Teléfono Local: </label>
-			        	<%= @recipe.local_phone %>
-                	</div>
-				</div>
-				<div class="recipe col-md-6 col-sm-6 col-xs-10">
-					<h3>Medicamentos Recetados</h3>
-					<% @recipe.recipe_details.each do |detail|%>
-						<div class="form-group col-md-12 col-sm-10 col-xs-10">
-							<label>Nombre Medicamento:</label>
-							<%= detail.medicine_name %>
-						</div>
-						<div class="form-group col-md-12 col-sm-10 col-xs-10">
-							<label>Cantidad:</label>
-							<%= detail.quantity %>
-						</div>
-						<div class="form-group col-md-12 col-sm-10 col-xs-10">
-							<label>Indicaciones:</label>
-							<%= detail.indications %>
-						</div>
-					<% end %>
-				</div>
-		    </div>
-	    </div>
-	    <div >
-            <div class="form-group">
-            	<%= link_to "Volver", root_path, class: "btn btn-danger btn-flat" %>
-             </div>
-		</div>
-	</div>
+<br>
+<div class="w3ls_logo_products_left1">
 </div>
+<div class="w3ls_logo_products_left">
+	<h1><a class="center_text_2" href=<% home_index_path %>><b>Medline</b> </a></h1>
+</div>
+<div class="clearfix"> </div>
+<div class="box box-primary"></div>
+<div class="main main-raised main-product">
+  <div class="row">
+    <div class="col-md-6 col-sm-6">
+     	<div class="tab-home">
+				<div class="tab-pane" id="product-page1">
+					<%= image_tag("icons/medline.png")%>
+				</div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6">
+		<h2 class="title"> Datos Receta Médica </h2>
+		<div id="acordeon">
+			<div class="panel-group" id="accordion">
+				<div class="panel panel-border panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+							<h4 class="panel-title">Datos del Paciente</h4>
+						</a>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in">
+						<div class="panel-body">
+							<div class="col-md-12 col-sm-10 col-xs-10">
+				          		<label>Tipo de documento: </label>
+					        	<%= @recipe.document_type %>
+		                	</div>
+		                	<div class="col-md-12 col-sm-10 col-xs-10">
+				            	<label>Número de documento: </label>
+				            	<%= @recipe.document %>
+				        	</div>
+				        	<div class="col-md-12 col-sm-10 col-xs-10">
+				          		<label>Nombre Completo: </label>
+					        	<%= @recipe.full_name %>
+		                	</div>
+		                	<div class="col-md-12 col-sm-10 col-xs-10">
+				          		<label>Correo Electrónico: </label>
+					        	<%= @recipe.email %>
+		                	</div>
+		                	<div class="col-md-12 col-sm-10 col-xs-10">
+				          		<label>Teléono Celular: </label>
+					        	<%= @recipe.cell_phone %>
+		                	</div>
+		                	<div class="col-md-12 col-sm-10 col-xs-10">
+				          		<label>Teléfono Local: </label>
+					        	<%= @recipe.local_phone %>
+		                	</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel panel-border panel-default">
+					<div class="panel-heading" role="tab" id="headingOne">
+						<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne">
+							<h4 class="panel-title">Medicamentos Recetados</h4>
+						</a>
+					</div>
+					<div id="collapseTwo" class="panel-collapse collapse">
+						<div class="panel-body">
+							<% @recipe.recipe_details.each_with_index do |detail, index|%>
+								<div class="row">
+									<h4>Medicamento <%= index + 1 %></h4>
+									<div class="col-md-12 col-sm-10 col-xs-10">
+										<label>Nombre Medicamento:</label>
+										<%= detail.medicine_name %>
+									</div>
+									<div class="col-md-12 col-sm-10 col-xs-10">
+										<label>Cantidad:</label>
+										<%= detail.quantity %>
+									</div>
+									<div class="col-md-12 col-sm-10 col-xs-10">
+										<label>Indicaciones:</label>
+										<%= detail.indications %>
+									</div>
+								</div>
+							<% end %>
+						</div>
+					</div>
+				</div>
+			</div>
+  		</div><!--  end acordeon -->
+  	</div>
+  </div>
+</div>
+
+<div class="form-group">
+	<%= link_to "Volver", my_recipes_url(current_doctor), class: "btn btn-danger btn-flat" %>
+ </div>

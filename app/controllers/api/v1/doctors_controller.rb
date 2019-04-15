@@ -1,7 +1,7 @@
 class Api::V1::DoctorsController < Api::V1::BaseController
   #include Pundit
 	before_action :load_resource
-  before_action :authenticate_doctor
+  before_action :authenticate_doctor!
 
   def validate_doctor
     @doctor = Doctor.find_by(email: params[:email])
