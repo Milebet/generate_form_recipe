@@ -5217,6 +5217,10 @@ table.text-center th {
   position: relative;
 }
 
+.custom-card-body {
+  min-height: 140px !important;
+}
+
 .card-user .card-body {
   min-height: 240px;
 }

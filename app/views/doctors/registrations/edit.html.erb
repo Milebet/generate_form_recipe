@@ -1,69 +1,77 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="col-md-offset-2 col-md-8">
+  <div class="well well-sm">
+    <legend class="text-center header">Edit <%= resource_name.to_s.humanize %></legend>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="row">
-       <div class="form-inputs">
-            <div class="col-md-3">
-               Correo Electrónico:
-            </div> 
-            <div class="col-md-9">
-                <%= f.input :email,
-                            required: true,
-                            autofocus: true,
-                            label: false,
-                            input_html: { :class => "input-text-custom", autocomplete: "email" },
-                            error: 'Este campo es obligatorio',
-                            placeholder: 'user@domain.com'%>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= f.error_notification %>
+      <div class="divide-bar">
+        <p class="titles-forms">Datos Inicio de Sesión</p>
+      </div>
+      <div class="row">
+        <div class="form-inputs">
+          <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-envelope-o bigicon"></i></span>
+            <div class="col-md-8">
+              <%= f.input :email,
+                  label: false,
+                  required: true,
+                  autofocus: true,
+                  placeholder: "Correo Electrónico",
+                  class: "form-control"%>
             </div>
             <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
               <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
             <% end %>
-            <div class="col-md-3">
-               Nueva Contraseña:
+          </div>
+          <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-key bigicon"></i></span>
+            <div class="col-md-8">
+              <%= f.input :password,
+                  label: false,
+                  required: false,
+                  placeholder: "Nueva Contraseña",
+                  hint: "Dejar en blanco si no desea cambiar su contraseña.",
+                  class: "form-control"%>
             </div>
-            <div class="col-md-9">
-                <%= f.input :password,
-                            required: false,
-                            hint: "leave it blank if you don't want to change it",
-                            label: "",
-                            input_html: { :class =>"input-text-custom", autocomplete: "new-password" },
-                            error: 'Este campo es obligatorio'%><br>
-                <% if @minimum_password_length %>
-                    <span><%= "#{@minimum_password_length} characters minimum" %></span>
-                <% end %>
+            <% if @minimum_password_length %>
+              <span><%# "#{@minimum_password_length} characters minimum" %></span>
+            <% end %>
+          </div>
+          <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-key bigicon"></i></span>
+            <div class="col-md-8">
+              <%= f.input :password_confirmation,
+                  label: false,
+                  required: false,
+                  placeholder: "Confirmar Contraseña",
+                  class: "form-control"%>
             </div>
-            <div class="col-md-3">
-               Confirmar Contraseña:
+          </div>
+          <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-unlock-alt bigicon"></i></span>
+            <div class="col-md-8">
+              <%= f.input :current_password,
+                  label: false,
+                  required: true,
+                  placeholder: "Contraseña Actúal",
+                  hint: "Necesitamos su contraseña actual para confirmar los cambios.",
+                  class: "form-control"%>
             </div>
-            <div class="col-md-9">
-                <%= f.input :password_confirmation,
-                            required: false,
-                            label: "",
-                            input_html: { :class => "input-text-custom",autocomplete: "new-password" } %>
-            </div>
-            <div class="col-md-3">
-                Contraseña Actúal:
-            </div>
-            <div class="col-md-9">
-                <%= f.input :current_password,
-                            required: false,
-                            hint: "we need your current password to confirm your changes",
-                            label: "",
-                            input_html: { :class => "input-text-custom",autocomplete: "new-password" } %>
-            </div>
+          </div>
+        </div>
       </div>
+      <%= render "form", f: f %>
+      <div class="form-group">
+        <div class="col-md-12 text-center">
+            <%= f.button :submit, "Actúalizar", class: "btn btn-primary btn-lg" %>
+        </div>
+      </div>
+    <% end %>
+
+    <h3>Cancelar mi cuenta</h3>
+
+    <p>¿No está contento? <%= link_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Esta seguro?" }, method: :delete %></p>
+
+    <%= link_to "Volver", :back %>
   </div>
-  <%= render "form", f: f %>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
+</div>

@@ -2,199 +2,221 @@
         <p class="titles-forms">Datos Personales</p>
       </div>
       <div class="row">
-         <div class="form-inputs">
-            <div class="col-md-3">
-               Foto de perfil:
+        <div class="col-md-offset-4 col-md-4">
+          <div class="card card-user">
+            <div class="custom-card-body card-body"">
+              <%= image_tag @doctor.photo.url, class: "image"%>
             </div>
-            <div class="col-md-9">
-                <%= f.file_field :photo,
-                            required: false,
-                            label: "..",
-                            as: :file%>
-            </div>
-            <div class="col-md-3">
-               Tipo de documento:
-            </div>
-            <div class="col-md-9">
-                <%= f.input :document_type,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" },
-                             error: 'Este campo es obligatorio'%>
-            </div>
-            <div class="col-md-3">
-               Número de documento:
-            </div>
-            <div class="col-md-9">
-                <%= f.input :document,
-                            required: true,
-                            label: "",
-                            input_html: { :class => "input-text-custom" },
-                            error: 'Este campo es obligatorio'%>
-            </div>
-         </div>
-      </div>
-      <div class="row">
-          <div class="form-inputs">
-             <div class="col-md-3">
-               Primer Nombre:
-             </div>
-             <div class="col-md-9">
-                <%= f.input :first_name,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" },
-                             error: 'Este campo es obligatorio',
-                             placeholder: 'user@domain.com'%>
-
-             </div>
-             <div class="col-md-3">
-               Segundo Nombre:
-             </div>
-             <div class="col-md-9">
-                <%= f.input :second_name,
-                            required: false,
-                            label: "..",
-                            :input_html => { :class => "input-text-custom"}%>
-             </div>
           </div>
-          <div class="form-inputs">
-             <div class="col-md-3">
-               Primer Apellido:
-             </div>
-             <div class="col-md-9">
-                <%= f.input :last_name,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" },
-                             error: 'Este campo es obligatorio'%>
-             </div>
-             <div class="col-md-3">
-               Segundo Apellido:
-             </div>
-             <div class="col-md-9">
-                <%= f.input :second_last_name,
-                            required: false,
-                            label: "..",
-                            :input_html => { :class => "input-text-custom" }%>
-             </div>
-         </div>
+        </div>
+       </div>
+       <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <%= f.file_field :photo,
+                      required: false,
+                      label: false,
+                      as: :file%>
+        </div>
+       </div>
+       <div class="row">
          <div class="form-inputs">
-            <div class="col-md-3">
-               Apellido Casada:
+            <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-id-card bigicon"></i></span>
+                <div class="col-md-8">
+                    <%= f.input :document_type,
+                        label: false,
+                        required: true,
+                        placeholder: "Tipo de documento",
+                        collection: ["Cédula","Pasaporte","RUC Natural"],
+                        class: "form-control" %>
+                </div>
             </div>
-            <div class="col-md-9">
-                <%= f.input :married_name,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
+            <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-id-card bigicon"></i></span>
+                <div class="col-md-8">
+                    <%= f.input :document,
+                        label: false,
+                        required: true,
+                        placeholder: "Número de Documento",
+                        class: "form-control",
+                        :input_html => {:minlength => 10 , maxlength: 13}%>
+                </div>
             </div>
          </div>
       </div>
       <div class="row">
-         <div class="form-inputs">
-            <div class="col-md-3">
-               Fecha de nacimiento:
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :first_name,
+                    label: false,
+                    required: true,
+                    placeholder:"Primer Nombre" ,
+                    class: "form-control",
+                    input_html: { maxlength: 15 }
+                    %>
             </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :second_name,
+                    label: false,
+                    required: false,
+                    placeholder:"Segundo Nombre" ,
+                    class: "form-control",
+                    input_html: { maxlength: 15 }
+                %>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :last_name,
+                    label: false,
+                    required: true,
+                    placeholder:"Primer Apellido" ,
+                    class: "form-control",
+                    input_html: { maxlength: 20 }
+                %>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :second_last_name,
+                    label: false,
+                    required: false,
+                    placeholder:"Segundo Apellido" ,
+                    class: "form-control",
+                    input_html: { maxlength: 20 }
+                %>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :married_name,
+                    label: false,
+                    required: false,
+                    placeholder:"Apellido Casada" ,
+                    class: "form-control",
+                    input_html: { maxlength: 20 }
+                %>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :birth_date,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: true,
+                    placeholder:"Fecha de nacimiento",
+                    as: :date, start_year: Date.today.year - 90,
+                    end_year: Date.today.year - 18, discard_day: false,
+                    order: [:day, :month, :year]
+                    %>
             </div>
-            <div class="col-md-3">
-               Género:
-            </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-female fa-male bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :genre,
-                            required: true,
-                            label: "",
-                            :input_html => {:class => "custom-control custom-radio custom-control-inline"},
-                            as: :radio_buttons, collection: ["Hombre", "Mujer"], wrapper: :horizontal_collection_inline%>
+                    label: false,
+                    required: true,
+                    class: "custom-radio custom-control-inline",
+                    as: :radio_buttons, collection: ["Hombre", "Mujer"], wrapper: :horizontal_collection_inline
+                %>
             </div>
-         </div>
+        </div>
       </div>
       <div class="divide-bar">
          <p class="titles-forms">Datos Profesionales</p>
       </div>
       <div class="row">
-         <div class="form-inputs">
-             <div class="col-md-3">
-                Especialidad:
-             </div>
-             <div class="col-md-9">
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user-md bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :speciality,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
-             </div>
-         </div>
-         <div class="form-inputs">
-                <div class="col-md-3">
-                   Años de experiencia:
-                </div>
-                <div class="col-md-9">
-                    <%= f.input :years_experience,
-                                required: true,
-                                label: "",
-                                :input_html => { :class => "input-text-custom" }%>
-                </div>
-         </div>
+                    label: false,
+                    required: true,
+                    placeholder:"Especialidad",
+                    class: "form-control"
+                    %>
+            </div>
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>
+            <div class="col-md-8">
+                <%= f.input :years_experience,
+                    label: false,
+                    required: true,
+                    placeholder:"Años de Experiencia",
+                    class: "form-control"
+                    %>
+            </div>
+        </div>
       </div>
       <div class="divide-bar">
          <p class="titles-forms">Dirección de Trabajo</p>
       </div>
       <div class="row">
-         <div class="form-inputs">
-            <div class="col-md-3">
-               País de residencia:
-            </div>
-            <div class="col-md-9">
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-globe bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :country,
-                            required: true,
-                            priority: [ "Ecuador" ],
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: true,
+                    priority: [ "Ecuador" ],
+                    class: "form-control"
+                    %>
             </div>
-            <div class="col-md-3">
-               Ciudad de residencia:
-            </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-street-view bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :city,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: true,
+                    placeholder:"Ciudad",
+                    class: "form-control",
+                    input_html: { maxlength: 50 }
+                    %>
             </div>
-         </div>
-         <div class="form-inputs">
-            <div class="col-md-3">
-               Dirección:
-            </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :address,
-                            required: true,
-                            label: "",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: true,
+                    placeholder:"Dirección",
+                    class: "form-control"
+                    %>
             </div>
-         </div>
-         <div class="form-inputs">
-            <div class="col-md-3">
-               Teléfono Local:
-            </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-phone-square bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :local_phone,
-                            required: false,
-                            label: "..",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: false,
+                    placeholder:"Teléfono Local",
+                    class: "form-control",
+                    input_html: { maxlength: 10 }
+                    %>
             </div>
-            <div class="col-md-3">
-               Teléfono Célular:
-            </div>
-            <div class="col-md-9">
+        </div>
+        <div class="form-group">
+            <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-mobile bigicon"></i></span>
+            <div class="col-md-8">
                 <%= f.input :cell_phone,
-                            required: false,
-                            label: "..",
-                            :input_html => { :class => "input-text-custom" }%>
+                    label: false,
+                    required: false,
+                    placeholder:"Teléfono Célular",
+                    class: "form-control",
+                    input_html: { maxlength: 15 }
+                    %>
             </div>
-         </div>
+        </div>
       </div>

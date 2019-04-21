@@ -6,43 +6,13 @@
       </div>
       <div class="card-body">
         <div class="author">
-          <a class="image">
+          <p>
           	<%= image_tag @doctor.photo.url, class: "image"%>
-            <h5 class="title"><%= @doctor.full_name %></h5>
-          </a>
-          <p class="description">
-            @chetfaker
+            <h4><%= @doctor.full_name %></h4>
           </p>
-        </div>
-        <p class="description text-center">
-          "I like the way you work it
-          <br> No diggity
-          <br> I wanna bag it up"
-        </p>
-      </div>
-      <div class="card-footer">
-        <hr>
-        <div class="button-container">
-          <div class="row">
-            <div class="col-lg-3 col-md-6 col-6 ml-auto">
-              <h5>12
-                <br>
-                <small>Files</small>
-              </h5>
-            </div>
-            <div class="col-lg-4 col-md-6 col-6 ml-auto mr-auto">
-              <h5>2GB
-                <br>
-                <small>Used</small>
-              </h5>
-            </div>
-            <div class="col-lg-3 mr-auto">
-              <h5>24,6$
-                <br>
-                <small>Spent</small>
-              </h5>
-            </div>
-          </div>
+          <h5>
+            <%= @doctor.speciality %>
+          </h5>
         </div>
       </div>
     </div>
@@ -50,60 +20,69 @@
   <div class="col-md-8">
     <div class="card card-user">
       <div class="card-header">
-        <h5 class="card-title">Perfíl</h5>
+        <legend class="text-center header">Perfíl</legend>
       </div>
       <div class="card-body">
         <form>
+        <div class="divide-bar">
+          <p class="titles-forms">Datos Personales</p>
+        </div>
           <div class="row">
-            <div class="col-md-5 pr-1">
+            <div class="col-md-offset-1 col-md-5 pr-1">
               <div class="form-group">
                 <label>Tipo de documento</label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.document_type %>">
               </div>
             </div>
-            <div class="col-md-3 px-1">
+            <div class="col-md-5 px-1">
               <div class="form-group">
                 <label>Número de documento</label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.document %>">
               </div>
             </div>
-            <div class="col-md-4 pl-1">
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-5 pl-1">
               <div class="form-group">
                 <label>Fecha de nacimiento </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.birth_date %>">
               </div>
             </div>
-          </div>
-          <div class="row">
-          	<div class="col-md-6 pr-1">
+          	<div class="col-md-5 pr-1">
               <div class="form-group">
                 <label>Género </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.genre %>">
               </div>
             </div>
-            <div class="col-md-4 pl-1">
+          </div>
+          <div class="divide-bar">
+            <p class="titles-forms">Datos Profesionales</p>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-5 pl-1">
               <div class="form-group">
                 <label>Especialidad </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.speciality %>">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-4 pl-1">
+            <div class="col-md-3 pl-1">
               <div class="form-group">
                 <label>Años de Experiencia </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.years_experience %>">
               </div>
             </div>
-            <div class="col-md-6 pl-1">
-              <div class="form-group">
-                <label>País </label>
+          </div>
+          <div class="divide-bar">
+            <p class="titles-forms">Contacto de Trabajo</p>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-5 pl-1">
+               <div class="form-group">
+                <label>País</label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.country %>">
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5 pr-1">
               <div class="form-group">
                 <label>Ciudad </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.city %>">
@@ -111,19 +90,21 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-4 pr-1">
+            <div class="col-md-offset-1 col-md-10 pl-1">
               <div class="form-group">
                 <label>Dirección </label>
-                <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.address %>">
+                <textarea class="form-control text-center" disabled=""><%= @doctor.address %></textarea>
               </div>
             </div>
-            <div class="col-md-4 px-1">
+          </div>
+          <div class="row">
+            <div class="col-md-offset-1 col-md-5 pl-1">
               <div class="form-group">
                 <label>Teléfono Local </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.local_phone %>">
               </div>
             </div>
-            <div class="col-md-4 pl-1">
+            <div class="col-md-5 pl-1">
               <div class="form-group">
                 <label>Teléfono Célular </label>
                 <input type="text" class="form-control text-center" disabled="" value="<%= @doctor.cell_phone %>">

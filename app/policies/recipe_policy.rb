@@ -14,4 +14,9 @@ class RecipePolicy < ApplicationPolicy
 		return false if !doctor.present?
 		return true if doctor.present?
 	end
+
+	def create?
+		return false if !doctor.present?
+		return true if doctor.present? && record.doctor.id == doctor.id
+	end
 end

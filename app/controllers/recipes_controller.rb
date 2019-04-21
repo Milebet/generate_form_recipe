@@ -11,6 +11,7 @@ class RecipesController < ApplicationController
   def create
   	@recipe = Recipe.new(recipe_params)
     @recipe.doctor = current_doctor
+    authorize @recipe
   	respond_to do |format|
       if @recipe.save(recipe_params)
         RecipeMailer.new_recipe(@recipe).deliver_now
@@ -28,7 +29,7 @@ class RecipesController < ApplicationController
 
   private
    def recipe_params
-     params.require(:recipe).permit(:id, :full_name, :email, :cell_phone, :local_phone, :document_type, :document, :doctor_id, 
+     params.require(:recipe).permit(:id, :full_name, :email, :cell_phone, :local_phone, :document_type, :document, :doctor_id, :observation, 
       recipe_details_attributes: [:id, :medicine_name, :quantity, :indications, :_destroy])
    end
 

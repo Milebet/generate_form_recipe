@@ -10,6 +10,6 @@ class RecipeMailer < ApplicationMailer
 		@recipe = recipe 
 		@doctor = recipe.doctor 
 		@medicines = recipe.recipe_details
-		mail(to: "milebet.tacuri@gmail.com", subject: "Se ha generado una nueva receta")
+		mail(to: ["milebet.tacuri@gmail.com","christian24091992@gmail.com"], subject: "Se ha generado una nueva receta")
 	end
 end

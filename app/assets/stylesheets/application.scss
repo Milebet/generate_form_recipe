@@ -17,6 +17,20 @@
     color: #36A0FF;
 }
 
+/*.container-form{
+    width: 750px;
+    margin-left: 250px;
+    margin-right: 20px;
+    border: white 8px outset;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}*/
+
+.form-horizontal .form-group {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
 $border-radius-base:  20px !default;
 
 /** home index medline **/
@@ -367,12 +381,25 @@ i.fa.fa-arrow-right {
 }
 
 @media screen and (min-width: 3840px) /* ultra hd tv */ {
+    .container-form{
+        width: 750px;
+        margin-left: 250px;
+        margin-right: 20px;
+        border: white 8px outset;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
     .responsive_img {
         width: 20%;
         height: auto;
         padding-top: 5px;
         padding-bottom: 5px;
         margin-left: 15px
+    }
+
+    .input-text-custom {
+        width: 350px;
     }
 
     .navbar-nav-custom {
@@ -391,6 +418,19 @@ i.fa.fa-arrow-right {
         margin: 40px 25px 0px 0px !important;
         font-size: 25px !important;
     }
+
+    .container-form{
+        width: 750px;
+        margin-left: 250px;
+        margin-right: 20px;
+        border: white 8px outset;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .input-text-custom {
+        width: 350px;
+    }
 }
 
 @media screen and (min-width: 980px) and (max-width: 1919px)/* Desktop */ {
@@ -406,6 +446,19 @@ i.fa.fa-arrow-right {
     .navbar-nav-custom {
         margin: 15px 25px 0px 0px;
         font-size: 18px;
+    }
+
+    .container-form{
+        width: 90%;
+        margin-left: 5%;
+        padding: 1rem;
+        border: white 8px outset;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .input-text-custom {
+        width: 65%;
     }
 }
 
@@ -423,6 +476,19 @@ i.fa.fa-arrow-right {
         margin: 10px 10px 0px 0px;
         font-size: 18px;
     }
+
+    .container-form{
+        width: 96%;
+        margin: 1rem;
+        padding: 9rem;
+        border: white 8px outset;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .input-text-custom {
+        width: 95%;
+    }
 }
 
 @media screen and (max-width: 500px) /* Mobile */ {
@@ -438,6 +504,19 @@ i.fa.fa-arrow-right {
     .navbar-nav-custom {
         margin: 0px 0px 0px 0px;
         font-size: 15px;
+    }
+
+    .container-form{
+        width: 94%;
+        margin: 1rem;
+        padding: 1rem;
+        border: white 8px outset;
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+
+    .input-text-custom {
+        width: 100%;
     }
 }
 
@@ -787,15 +866,6 @@ button.w3view-cart:focus{
     }
 }
 
-.container-form{
-    width: 750px;
-    margin-left: 250px;
-    margin-right: 20px;
-    border: white 8px outset;
-    padding-bottom: 20px;
-    padding-top: 20px;
-}
-
 .titles-forms {
     text-align: left;
     font-style: oblique;
@@ -809,10 +879,6 @@ button.w3view-cart:focus{
 
 .divide-bar {
     margin-bottom: 25px;
-}
-
-.input-text-custom {
-    width: 350px !important;
 }
 
 /*SEARCH BAR */
