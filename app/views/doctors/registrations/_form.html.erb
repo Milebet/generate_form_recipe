@@ -108,14 +108,12 @@
         <div class="form-group">
             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"></i></span>
             <div class="col-md-8">
-                <%= f.input :birth_date,
+                <%= f.input :birth_date, as: :string, 
                     label: false,
                     required: true,
                     placeholder:"Fecha de nacimiento",
-                    as: :date, start_year: Date.today.year - 90,
-                    end_year: Date.today.year - 18, discard_day: false,
-                    order: [:day, :month, :year]
-                    %>
+                    wrapper: :date, 
+                    input_html: {value: f.object.birth_date } %>
             </div>
         </div>
         <div class="form-group">
@@ -125,7 +123,7 @@
                     label: false,
                     required: true,
                     class: "custom-radio custom-control-inline",
-                    as: :radio_buttons, collection: ["Hombre", "Mujer"], wrapper: :horizontal_collection_inline
+                    as: :radio_buttons, collection: ["Masculino", "Femenino"], wrapper: :horizontal_collection_inline
                 %>
             </div>
         </div>
@@ -168,8 +166,10 @@
                     label: false,
                     required: true,
                     priority: [ "Ecuador" ],
+                    format: :with_data_attrs,
+                    include_blank: 'Seleccione un país',
                     class: "form-control"
-                    %>
+                %>
             </div>
         </div>
         <div class="form-group">

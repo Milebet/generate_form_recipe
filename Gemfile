@@ -76,6 +76,7 @@ gem 'cocoon', '~> 1.2.0'
 # use master version of simple-form for twitter-bootstrap integration
 gem 'simple_form' #, '~> 3.1.0'
 gem 'jquery-rails'
+gem 'jquery-validation-rails'
 gem 'bootstrap-sass', '~> 3.3.0'
 gem 'country_select'
 gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
@@ -94,3 +95,4 @@ gem 'rack-attack'
 gem 'redis-activesupport'
 gem 'jsonapi-renderer'
 gem 'httparty'
+gem 'date_wrapper'

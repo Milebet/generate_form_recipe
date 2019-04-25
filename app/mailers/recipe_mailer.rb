@@ -6,6 +6,12 @@ class RecipeMailer < ApplicationMailer
 		mail(to: resource.email, subject: 'Bienvenido a Medline Recetas')
 	end
 
+	def password_reset(resource,generated_password)
+		@resource = resource
+		@generated_password = generated_password
+		mail(to: resource.email, subject: 'Cambio de contraseña')
+	end
+
 	def new_recipe(recipe)
 		@recipe = recipe 
 		@doctor = recipe.doctor 

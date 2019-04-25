@@ -29,11 +29,6 @@ class Api::V1::BaseController < ActionController::API
 
     def valid_authenticated? request
       options = {}
-      puts ">>>>>PARAMS >>>>> #{params}"
-      puts ">>>>>>>>>> #{request.authorization}"
-      puts ">>>>>>>>>> #{request.query_parameters}"
-      puts ">>>>>>>>>> #{request.request_parameters}"
-      puts ">>>>>>>>>> #{request.body}"
       return nil if !request[:email].present? && !request[:id].present? && !params[:doctor_id].present?
       if params[:action] == "validate_doctor"
         options[:authentication] = {email: request[:email]}
@@ -41,6 +36,9 @@ class Api::V1::BaseController < ActionController::API
           options[:authentication][:password] = request.query_parameters['password']
           options[:authentication][:password] = request.request_parameters['password'] if !options[:authentication][:password].present?
         end
+      elsif params[:action] == "reset_password"
+        doctor = Doctor.find_by(email: params[:email])
+        return false if !doctor.present?
       elsif params[:controller].match(/recipe/).present?
         options[:authentication] = {id: params[:doctor_id]}
         options[:authentication][:token] = request.authorization
@@ -64,11 +62,13 @@ class Api::V1::BaseController < ActionController::API
       #  return nil
       #end
       request_params = valid_authenticated?(request)
-      return nil if !request_params.present?
+      return nil if !request_params.present? && params[:action] != "reset_password"
       if params[:action] == "validate_doctor"
         doctor = Doctor.find_by(email: request_params[:authentication][:email])
         return false if !doctor.present?
         doctor.valid_password?(request_params[:authentication][:password]) ? true : false
+      elsif params[:action] == "reset_password"
+        return true
       else
         doctor = Doctor.find(request_params[:authentication][:id])
         return false if !doctor.present? || !request_params[:authentication][:token].present?

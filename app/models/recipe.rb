@@ -4,7 +4,7 @@ class Recipe < ApplicationRecord
 
 	accepts_nested_attributes_for :recipe_details,
 		:allow_destroy => true,
-	    :reject_if     => :all_blank
+	  :reject_if     => :all_blank
 
 	validates :full_name, :email, :document_type, :document, :presence => true
 end

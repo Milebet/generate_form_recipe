@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     end
   end
   match "api/v1/update_doctor/:id" => "api/v1/doctors#update", via: [:put], as: "update_doctor_api"
+  match "api/v1/reset_password/:email" => "api/v1/doctors#reset_password", via: [:get], constraints: { email: /[^\/]+/}, as: "reset_password_api"
   match "api/v1/validate_doctor/:email" => "api/v1/doctors#validate_doctor", via: [:get], constraints: { email: /[^\/]+/} , as: "validate_doctor"
   match "api/v1/recipes_doctor/:doctor_id" => "api/v1/recipes#recipes_doctor", via: [:get] , as: "recipes_doctor"
 end

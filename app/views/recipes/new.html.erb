@@ -9,7 +9,8 @@
                         label: false,
                         required: true,
                         placeholder: "Tipo de documento",
-                        class: "form-control" %>
+                        class: "form-control",
+                        collection: ["Cédula","Pasaporte","RUC Natural"]%>
                 </div>
             </div>
             <div class="form-group">
@@ -51,6 +52,7 @@
                         label: false,
                         required: false,
                         placeholder: "Teléfono Celular",
+                        input_html: { maxlength: 10 },
                         class: "form-control"%>
                 </div>
             </div>
@@ -61,6 +63,7 @@
                         label: false,
                         required: false,
                         placeholder: "Teléfono Local",
+                        input_html: { maxlength: 15 },
                         class: "form-control"%>
                 </div>
             </div>

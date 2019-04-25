@@ -18,6 +18,9 @@
 //= require skdslider.min.js
 //= require adminlte.js
 //= require cocoon
+//= require jquery.validate
+//= require jquery.validate.localization/messages_es
+//= require date_wrapper
 //= require_tree .
 
 $(document).ready(function(){
@@ -50,3 +53,36 @@ function errorTimeout() {
      $(".flash_error").slideUp("slow")
   }, 2000);
 }
+
+function validateDoctorProfileFunction() {
+	$("#edit_doctor").validate({
+		debug: false,
+		rules: {
+		"doctor[document]": { minlength: 10, maxlength: 13 },
+		"doctor[first_name]": { minlength: 2 },
+		"doctor[second_name]": { minlength: 2 },
+		"doctor[last_name]": { minlength: 2 },
+		"doctor[second_last_name]": { minlength: 2 },
+		"doctor[married_name]": { minlength: 2 },
+		"doctor[cell_phone]": { minlength: 10, maxlength: 13 },
+		"doctor[local_phone]": { minlength: 7, maxlength: 9 },
+	} 
+	})
+  }
+$(document).ready(validateDoctorProfileFunction);
+$(document).on('page:load', validateDoctorProfileFunction);
+
+function validateRecipeFunction() {
+	$("#new_recipe").validate({
+		debug: false,
+		rules: {
+		"recipe[document]": { minlength: 10, maxlength: 13 },
+		"recipe[full_name]": { minlength: 2 },
+		"recipe[cell_phone]": { minlength: 10, maxlength: 13 },
+		"recipe[local_phone]": { minlength: 7, maxlength: 9 },
+
+	} 
+	})
+  }
+$(document).ready(validateRecipeFunction);
+$(document).on('page:load', validateRecipeFunction);

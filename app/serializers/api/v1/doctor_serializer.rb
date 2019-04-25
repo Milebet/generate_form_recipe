@@ -1,5 +1,5 @@
-class Api::V1::DoctorSerializer < ActiveModel::Serializer
-  attributes(*Doctor.attribute_names.map(&:to_sym) << :recipes)
+class Api::V1::DoctorSerializer < Api::V1::BaseSerializer
+  attributes(*Doctor.attribute_names.map(&:to_sym), :recipes)
 
   def recipes
     object.recipes.map do |recipe|

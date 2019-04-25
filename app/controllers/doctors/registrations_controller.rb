@@ -20,8 +20,8 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
         RecipeMailer.welcome_doctor(@resource, @generated_password).deliver_now
         format.html { redirect_to profile_doctor_url(@resource), notice: "Doctor creado" }
       else
-        flash.now[:alert] = "Error #{@resource.errors.keys}"
-        format.html { render action: "new", :alert => "fallos" }
+        flash.now[:alert] = "Error #{@resource.errors.messages}"
+        format.html { render action: "new", :alert => "Ha ocurrido un error." }
       end
     end
    end
@@ -33,7 +33,7 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
    def update
-     super
+    super
    end
 
   # DELETE /resource
@@ -66,8 +66,7 @@ class Doctors::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :document_type, 
-      :document, :first_name, :second_name, :last_name, :second_last_name, :married_name, 
+     devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :password_confirmation, :document_type, :document, :first_name, :second_name, :last_name, :second_last_name, :married_name, 
       :birth_date, :genre, :speciality, :years_experience, :country, :city, :address, 
       :local_phone, :cell_phone, :photo, :photo_file_name, :photo_content_type, :photo_file_size, :photo_updated_at])
    end

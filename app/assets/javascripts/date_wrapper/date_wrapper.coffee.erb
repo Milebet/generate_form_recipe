@@ -1,0 +1,12 @@
+$ ->
+  assign_datepickers()
+
+@assign_datepickers = (target = 'body') ->
+  $.fn.datepicker.defaults.format = 'yyyy-dd-mm';
+  $(target).find('div.datepicker').data({behaviour: "datepicker"}).datepicker({
+    format: 'yyyy-dd-mm',
+    dateFormat: 'yyyy-dd-mm' ,
+    autoclose: true,
+    language: 'es',
+    weekStart: 1
+  })

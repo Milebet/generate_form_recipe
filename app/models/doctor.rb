@@ -12,20 +12,16 @@ class Doctor < ApplicationRecord
     :retina   => ['1200>',     :jpg, :quality => 30]
   }
     
+  has_one_attached :image
   validates_attachment_content_type :photo, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   has_many :recipes, inverse_of: :doctor
 
   accepts_nested_attributes_for :recipes
 
   validates :first_name, :last_name, :document_type, :document, :birth_date,
-            :speciality, :years_experience, :country, :city, :address, :presence => true
+            :speciality, :years_experience, :country, :city, :address, :genre, :presence => true
             
-  before_create { |r|
-    if !self.local_phone.present? && !self.cell_phone.present?
-      r.errors.add(:create, "Please suplies at least one phone number")
-      false
-    end
-  }
+  before_save :validates_phone, :validates_gender,  on: :update
 
   before_validation :ensure_token
 
@@ -41,7 +37,17 @@ class Doctor < ApplicationRecord
   end
 
   def validates_phone
-    self.local_phone.present? || self.cell_phone.present?
+    if !self.local_phone.present? && !self.cell_phone.present?
+      errors.add :cell_phone, "Por favor provea al menos un número telefónico."
+      throw(:abort)
+    end
+  end
+
+  def validates_gender
+    if self.genre.present? && (self.genre.downcase != "femenino" && self.genre.downcase != "masculino")
+      errors.add :genre, "Valor no valido. Permitido solo 'Femenino' y 'Masculino"
+      throw(:abort)
+    end
   end
 
   def full_name

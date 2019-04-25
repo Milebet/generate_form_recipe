@@ -8,7 +8,9 @@
     <div class="col-md-9">
     <%= r.input :document_type,
                 label: false,
-                required: true%>
+                required: true,
+                collection: ["Cédula","Pasaporte","RUC Natural"],
+                class: "form-control"%>
     </div>
     <div class="col-md-3">
        Número de Documento:
